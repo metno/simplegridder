@@ -88,7 +88,7 @@ class ReadL2Data:
 
     GLOBAL_ATTRIBUTES = {}
     FILE_DIR = ''
-    FILE_MASK = '*'
+    FILE_MASK = '*.nc'
 
     _TIMEINDEX = 0
     _LATINDEX = 1
@@ -675,6 +675,80 @@ class ReadL2Data:
         return files
 
     ##################################################################################################
+        ###################################################################################
+
+    def to_netcdf_simple(self, netcdf_filename='/home/jang/tmp/to_netcdf_simple.nc',
+                         global_attributes=None, vars_to_read=['ec355aer'],
+                         data_to_write=None):
+
+        """method to store the file contents in a very basic netcdf file
+        >>> import read_aeolus_l2a_data
+        >>> obj = read_aeolus_l2a_data.ReadAeolusL2aData(verbose=True)
+        >>> import os
+        >>> os.environ['CODA_DEFINITION']='/lustre/storeA/project/aerocom/aerocom1/ADM_CALIPSO_TEST/'
+        >>> filename = '/lustre/storeB/project/fou/kl/admaeolus/data.rev.2A02/AE_OPER_ALD_U_N_2A_20181201T033526026_005423993_001590_0001.DBL'
+        >>> # read returning a ndarray
+        >>> filedata_numpy = obj.read_file(filename, vars_to_read=['ec355aer'], return_as='numpy')
+        >>> obj.ndarr2data(filedata_numpy)
+        >>> obj.to_netcdf_simple()
+
+        Parameters:
+        ----------
+            global_attributes : dict
+            dictionary with things to put into the global attributes of a netcdf file
+
+        """
+
+        start_time = time.perf_counter()
+        import xarray as xr
+        import pandas as pd
+        import numpy as np
+
+        vars_to_read_in = vars_to_read.copy()
+        if isinstance(vars_to_read_in, str):
+            vars_to_read_in = [vars_to_read_in]
+
+        if data_to_write is None:
+            _data = self.data
+        else:
+            _data = data_to_write
+
+        # vars_to_read_in.extend(list(self.RETRIEVAL_READ_PARAMETERS[self.RETRIEVAL_READ[0]]['metadata'].keys()))
+
+        vars_to_read_in.extend(list(['latitude','longitude']))
+        datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
+        pointnumber = np.arange(0, len(datetimedata))
+        ds = xr.Dataset()
+        ds.coords['point'] = pointnumber
+        # time is a special variable that needs special treatment
+        ds['time'] = ('point'), datetimedata
+        for var in vars_to_read_in:
+            if var == self._TIME_NAME:
+                continue
+            ds[var] = ('point'), _data[:, self.INDEX_DICT[var]]
+            try:
+                for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
+                    ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
+
+            except KeyError:
+                pass
+
+        try:
+            for name in global_attributes:
+                ds.attrs[name] = global_attributes[name]
+        except:
+            pass
+
+        ds.to_netcdf(netcdf_filename)
+
+        end_time = time.perf_counter()
+        elapsed_sec = end_time - start_time
+        temp = 'time for netcdf write [s]: {:.3f}'.format(elapsed_sec)
+        self.logger.info(temp)
+        temp = 'file written: {}'.format(netcdf_filename)
+        self.logger.info(temp)
+
+    ###################################################################################
 
     if __name__ == '__main__':
         import logging
@@ -880,7 +954,7 @@ class ReadL2Data:
                 #                                read_dataset=options['retrieval'])
                 filedata_numpy = obj.read_file(filename, vars_to_read=vars_to_read, return_as='numpy')
 
-                # obj.ndarr2data(filedata_numpy)
+                obj.ndarr2data(filedata_numpy)
                 # read additional data
                 # ancilliary_data = obj.read_data_fields(filename, fields_to_read=['mph'])
                 if temp_file_flag:
@@ -916,11 +990,13 @@ class ReadL2Data:
                         # write netcdf
                         if os.path.exists(options['outfile']):
                             if options['overwrite']:
-                                obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
+                                # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
+                                obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
                             else:
                                 sys.stderr.write('Error: path {} exists'.format(options['outfile']))
                         else:
-                            obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
+                            # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
+                            obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
                     else:
                         sys.stderr.write("error: multiple input files, but only on output file given\n"
                                          "Please use the --outdir option instead\n")
