@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="627" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="952" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1390" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ecaedb05-d2df-4050-a097-5cec52118361" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simplegridder.py" beforeDir="false" afterPath="$PROJECT_DIR$/simplegridder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,22 +19,35 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../aeolus2netcdf/read_aeolus_l2a_data.py">
+        <entry file="file://$PROJECT_DIR$/simplegridder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="1261" selection-start-line="1188" selection-start-column="4" selection-end-line="1261" />
+            <state relative-caret-position="-535">
+              <caret line="995" column="59" selection-start-line="995" selection-start-column="24" selection-end-line="995" selection-end-column="59" />
+              <folding>
+                <element signature="e#1412#1421#0" expanded="true" />
+                <element signature="e#12#26#0" expanded="true" />
+                <element signature="e#12#26#0" expanded="true" />
+                <element signature="e#12#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/simplegridder.py">
+        <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T231817_20181202T005947_05882_01_010202_20181208T011056.nc.map.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc.map.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9036">
-              <caret line="663" lean-forward="true" selection-start-line="663" selection-end-line="663" />
-              <folding>
-                <element signature="e#1412#1421#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="167">
+              <caret line="332" selection-start-line="332" selection-end-line="332" />
             </state>
           </provider>
         </entry>
@@ -45,10 +64,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>RETRIEVAL</find>
+      <find>ec355aer</find>
+      <find>'point'</find>
     </findStrings>
     <replaceStrings>
       <replace>s5p'</replace>
       <replace>DATASET</replace>
+      <replace>ozone_tropospheric_column</replace>
+      <replace>qa_index</replace>
+      <replace>point_dim_name</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -57,20 +81,23 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/../pyaerocom/pyaerocom/plot/plotmaps.py" />
         <option value="$PROJECT_DIR$/simplegridder.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1987" />
-    <option name="width" value="1853" />
-    <option name="height" value="1060" />
+    <option name="x" value="286" />
+    <option name="y" value="158" />
+    <option name="width" value="1401" />
+    <option name="height" value="790" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -78,17 +105,43 @@
               <item name="simplegridder" type="b2602c69:ProjectViewProjectNode" />
               <item name="simplegridder" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="simplegridder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="simplegridder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (sentinel5p) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="simplegridder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (sentinel5p) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplegridder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (sentinel5p) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python3" type="462c0819:PsiDirectoryNode" />
+              <item name="simplegridder" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../aeolus2netcdf/read_aeolus_l2a_data.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pyaerocom/pyaerocom/plot/plotmaps.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -102,8 +155,71 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.single file emep area">
-    <configuration name="single file emep area" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager" selected="Python.single file plot gridded tar file">
+    <configuration name="single file export gridded" type="PythonConfigurationType" factoryName="Python">
+      <module name="simplegridder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
+      <option name="PARAMETERS" value="-O --gridfile ./gridded.nc --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="single file export" type="PythonConfigurationType" factoryName="Python">
+      <module name="simplegridder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
+      <option name="PARAMETERS" value="-O -o test.nc --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="single file plot gridded tar file" type="PythonConfigurationType" factoryName="Python">
+      <module name="simplegridder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
+      <option name="PARAMETERS" value="-O --plotmap --variables nitrogendioxide_tropospheric_column --file $USER_HOME$/tmp/tropomi_no2_20181201.tar" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="single file plot gridded " type="PythonConfigurationType" factoryName="Python">
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -113,7 +229,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="--emep --outfile test.nc --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="PARAMETERS" value="-O --plotmap --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -143,9 +259,15 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.single file export gridded" />
+      <item itemvalue="Python.single file plot gridded " />
+      <item itemvalue="Python.single file plot gridded tar file" />
+      <item itemvalue="Python.single file export" />
       <item itemvalue="Python.single file" />
-      <item itemvalue="Python.single file emep area" />
     </list>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -161,22 +283,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1987" y="-2" width="1853" height="1202" extended-state="6" />
+    <frame x="53" y="17" width="1867" height="1062" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6097297" visible="true" weight="0.2494577" />
+      <window_info id="Structure" order="1" sideWeight="0.39027026" side_tool="true" visible="true" weight="0.2494577" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989071" weight="0.39885497" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989071" weight="0.39783785" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" x="993" y="55" width="927" height="1025" id="Terminal" order="8" sideWeight="0.49945354" type="WINDOWED" visible="true" weight="0.32824427" />
+      <window_info anchor="bottom" x="989" y="73" width="931" height="1001" id="Terminal" order="8" sideWeight="0.49945354" weight="0.32756758" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50054646" side_tool="true" weight="0.32824427" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" weight="0.32824427" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" weight="0.32756758" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -187,36 +309,76 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>959</line>
-          <option name="timeStamp" value="5" />
+          <line>1392</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/simplegridder.py</url>
+          <line>1099</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/simplegridder.py</url>
+          <line>1391</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/codecs.py">
+    <entry file="file://$PROJECT_DIR$/../aeolus2netcdf/read_aeolus_l2a_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        <state relative-caret-position="322">
+          <caret line="1834" selection-start-line="1712" selection-end-line="1834" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../aeolus2netcdf/read_aeolus_l2a_data.py">
+    <entry file="file://$PROJECT_DIR$/../pyaerocom/pyaerocom/plot/plotmaps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="1261" selection-start-line="1188" selection-start-column="4" selection-end-line="1261" />
+        <state relative-caret-position="329">
+          <caret line="114" column="112" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="112" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/posixpath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/tarfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="2359" selection-start-line="2359" selection-end-line="2359" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="332" selection-start-line="332" selection-end-line="332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc.map.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/simplegridder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9036">
-          <caret line="663" lean-forward="true" selection-start-line="663" selection-end-line="663" />
+        <state relative-caret-position="-535">
+          <caret line="995" column="59" selection-start-line="995" selection-start-column="24" selection-end-line="995" selection-end-column="59" />
           <folding>
             <element signature="e#1412#1421#0" expanded="true" />
+            <element signature="e#12#26#0" expanded="true" />
+            <element signature="e#12#26#0" expanded="true" />
+            <element signature="e#12#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T231817_20181202T005947_05882_01_010202_20181208T011056.nc.map.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
