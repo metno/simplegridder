@@ -231,12 +231,14 @@ class ReadL2Data:
     NETCDF_VAR_ATTRIBUTES['latitude']['standard_name'] = 'latitude'
     NETCDF_VAR_ATTRIBUTES['latitude']['units'] = 'degrees north'
     NETCDF_VAR_ATTRIBUTES['latitude']['bounds'] = 'lat_bnds'
+    NETCDF_VAR_ATTRIBUTES['latitude']['axis'] = 'Y'
     NETCDF_VAR_ATTRIBUTES['longitude'] = {}
     # NETCDF_VAR_ATTRIBUTES['longitude']['_FillValue'] = {}
     NETCDF_VAR_ATTRIBUTES['longitude']['long_name'] = 'longitude'
     NETCDF_VAR_ATTRIBUTES['longitude']['standard_name'] = 'longitude'
     NETCDF_VAR_ATTRIBUTES['longitude']['units'] = 'degrees_east'
     NETCDF_VAR_ATTRIBUTES['longitude']['bounds'] = 'lon_bnds'
+    NETCDF_VAR_ATTRIBUTES['longitude']['axis'] = 'X'
     NETCDF_VAR_ATTRIBUTES['altitude'] = {}
     # NETCDF_VAR_ATTRIBUTES['altitude']['_FillValue'] = {}
     NETCDF_VAR_ATTRIBUTES['altitude']['long_name'] = 'altitude'
@@ -263,6 +265,18 @@ class ReadL2Data:
         'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
     NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['units'] = 'mol m-2'
     NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['coordinates'] = 'longitude latitude'
+
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_mean'] = \
+        NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']
+
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs'] = {}
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['long_name'] = \
+        'number of observations'
+    # NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs'][
+    #     'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['units'] = '1'
+    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['coordinates'] = 'longitude latitude'
 
     NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column'] = {}
     NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column']['_FillValue'] = np.nan
@@ -311,8 +325,10 @@ class ReadL2Data:
         self.data = []
         self.data_for_gridding = {}
         self.gridded_data = {}
+        self.global_attributes = {}
         self.index = len(self.metadata)
         self.files = []
+        self.files_read = []
         self.index_pointer = index_pointer
         # that's the flag to indicate if the location of a data point in self.data has been
         # stored in rads in self.data already
@@ -665,6 +681,7 @@ class ReadL2Data:
         self.logger.info(temp)
         # self.logger.info('{} points read'.format(index_pointer))
         self.DATASET_READ = read_dataset
+        self.files_read.append(filename)
         return file_data
 
     ###################################################################################
@@ -804,7 +821,7 @@ class ReadL2Data:
 
     def to_netcdf_simple(self, netcdf_filename='/home/jang/tmp/to_netcdf_simple.nc',
                          global_attributes=None, vars_to_read=None,
-                         data_to_write=None):
+                         data_to_write=None, gridded=False):
 
         """method to store the file contents in a very basic netcdf file
         >>> import read_aeolus_l2a_data
@@ -833,45 +850,100 @@ class ReadL2Data:
         if isinstance(vars_to_read_in, str):
             vars_to_read_in = [vars_to_read_in]
 
-        if data_to_write is None:
-            _data = self.data
-        else:
-            _data = data_to_write
+        if not gridded:
 
-        vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[self.DATASET_READ]['metadata'].keys()))
-
-        datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
-        # pointnumber = np.arange(0, len(datetimedata))
-        bounds_dim_name = 'bounds'
-        point_dim_name = 'point'
-        ds = xr.Dataset()
-
-        # time is a special variable that needs special treatment
-        ds['time'] = (point_dim_name), datetimedata
-        for var in vars_to_read_in:
-            if var == self._TIME_NAME:
-                continue
-            # 1D data
-            if var not in self.SIZE_DICT:
-                ds[var] = (point_dim_name), _data[:, self.INDEX_DICT[var]]
+            if data_to_write is None:
+                _data = self.data
             else:
-                # 2D data: here: bounds
-                ds[var] = ((point_dim_name, bounds_dim_name),
-                           _data[:, self.INDEX_DICT[var]:self.INDEX_DICT[var] + self.SIZE_DICT[var]])
+                _data = data_to_write
+    
+            vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[self.DATASET_READ]['metadata'].keys()))
+    
+            datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
+            # pointnumber = np.arange(0, len(datetimedata))
+            bounds_dim_name = 'bounds'
+            point_dim_name = 'point'
+            ds = xr.Dataset()
+    
+            # time is a special variable that needs special treatment
+            ds['time'] = (point_dim_name), datetimedata
+            for var in vars_to_read_in:
+                if var == self._TIME_NAME:
+                    continue
+                # 1D data
+                if var not in self.SIZE_DICT:
+                    ds[var] = (point_dim_name), _data[:, self.INDEX_DICT[var]]
+                else:
+                    # 2D data: here: bounds
+                    ds[var] = ((point_dim_name, bounds_dim_name),
+                               _data[:, self.INDEX_DICT[var]:self.INDEX_DICT[var] + self.SIZE_DICT[var]])
+    
+                # remove _FillVar attribute for coordinate variables as CF requires it
+                if var in self.COORDINATE_NAMES:
+                    ds[var].encoding['_FillValue'] = None
+    
+                # add predifined attributes
+                try:
+                    for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
+                        ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
+    
+                except KeyError:
+                    pass
+    
+        else:
+            # write gridded data to netcdf
+            if data_to_write is None:
+                _data = self.gridded_data
+            else:
+                _data = data_to_write
 
-            # remove _FillVar attribute for coordinate variables as CF requires it
-            if var in self.COORDINATE_NAMES:
-                ds[var].encoding['_FillValue'] = None
+            bounds_dim_name = 'bounds'
+            time_dim_name = 'time'
+            lat_dim_name = 'latitude'
+            lon_dim_name = 'longitude'
 
-            # add predifined attributes
-            try:
-                for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
-                    ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
+            ds = xr.Dataset()
 
-            except KeyError:
-                pass
+            # coordinate variables need special treatment
 
-        # add potential global attributes
+            ds[time_dim_name] = (time_dim_name), [np.datetime64(_data[time_dim_name], 'D')]
+            ds[lat_dim_name] = (lat_dim_name), _data[lat_dim_name],
+            ds[lon_dim_name] = (lon_dim_name), _data[lon_dim_name]
+
+            for var in vars_to_read_in:
+                if var == self._TIME_NAME:
+                    continue
+                # 1D data
+                # 3D data
+                ds[var+'_mean'] = (time_dim_name, lat_dim_name, lon_dim_name), np.reshape(_data[var]['mean'],(len(ds[time_dim_name]),len(_data[lat_dim_name]), len(_data[lon_dim_name])))
+                ds[var+'_numobs'] = (time_dim_name, lat_dim_name, lon_dim_name), np.reshape(_data[var]['numobs'],(len(ds[time_dim_name]),len(_data[lat_dim_name]), len(_data[lon_dim_name])))
+
+                # remove _FillVar attribute for coordinate variables as CF requires it
+
+            vars_to_read_in.extend([time_dim_name, lat_dim_name, lon_dim_name])
+
+            for var in ds:
+                # add predifined attributes
+                try:
+                    for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
+                        ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
+
+                except KeyError:
+                    pass
+
+            for var in ds.coords:
+                if var in self.COORDINATE_NAMES:
+                    ds[var].encoding['_FillValue'] = None
+
+                # add predifined attributes
+                try:
+                    for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
+                        ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
+
+                except KeyError:
+                    pass
+
+    # add potential global attributes
         try:
             for name in global_attributes:
                 ds.attrs[name] = global_attributes[name]
@@ -938,8 +1010,7 @@ class ReadL2Data:
                     data_for_gridding[var] = grid_data_prot.copy()
                     gridded_var_data['latitude']=grid_lats
                     gridded_var_data['longitude']=grid_lons
-                    gridded_var_data['time']=np.mean(_data,self._TIMEINDEX)
-                    # datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
+                    gridded_var_data['time']=np.mean(_data[:,self._TIMEINDEX]).astype('datetime64[s]')
 
                     gridded_var_data[var] = {}
                     gridded_var_data[var]['mean'] = grid_array_prot.copy()
@@ -1292,7 +1363,7 @@ class ReadL2Data:
             # check if the supplied files are archives or not
             # if they are: extract files to tmp dir and work with them then
             pass
-            obj.logger.info('checking if supllied files are archives...')
+            obj.logger.info('checking if supplied files are archives...')
             for filename in options['files']:
                 obj.logger.info('file: {}'.format(filename))
                 suffix = pathlib.Path(filename).suffix
@@ -1390,9 +1461,15 @@ class ReadL2Data:
         # grid data
         if 'gridfile' in options:
             result_flag = obj.to_grid(vars=vars_to_read)
+            global_attributes = {}
+            global_attributes['input files']=','.join(obj.files_read)
+            global_attributes['info']='file created by simplegridder (https://github.com/metno/simplegridder) at '+\
+                                      np.datetime64('now').astype('str')
+
             obj.to_netcdf_simple(options['gridfile'],
                                  vars_to_read=vars_to_read,
-                                 global_attributes=global_attributes)
+                                 global_attributes=global_attributes,
+                                 gridded=True)
 
         # outdir
         if 'outdir' in options:
@@ -1506,15 +1583,28 @@ class ReadL2Data:
 
         # plot the map
         if options['plotmap']:
-            plotmapfilename = os.path.join(options['plotdir'], os.path.basename(filename) + '.map.png')
             if len(obj.gridded_data.keys()) == 0:
                 #gridding has not been done yet
                 result_flag = obj.to_grid(vars=vars_to_read)
 
-            obj.logger.info('map plot file: {}'.format(plotmapfilename))
-            # title = os.path.basename(filename)
-            obj.plot_map(plotmapfilename, bbox=bbox, title=os.path.basename(filename))
-            # obj.plot_location_map(plotmapfilename)
+            if len(obj.files_read) == 1:
+                #single file read
+                plotmapfilename = os.path.join(options['plotdir'], '_'.join([options['variables'][0],
+                                                                             os.path.basename(obj.files_read[0])]) + '.map.png')
+                title='\n'.join([options['variables'][0],os.path.basename(obj.files_read[0])])
+                obj.plot_map(plotmapfilename, bbox=bbox, title=title)
+            else:
+                # archive file read
+                plot_date = np.datetime64(obj.gridded_data['time'], 'D').astype('str')
+                for var in options['variables']:
+
+                    plotmapfilename = os.path.join(options['plotdir'], '_'.join([var, plot_date]) + '.map.png')
+                    obj.logger.info('map plot file: {}'.format(plotmapfilename))
+                    title='_'.join([var, plot_date])
+                    # title = os.path.basename(filename)
+
+                    obj.plot_map(plotmapfilename, bbox=bbox, title=title)
+                    # obj.plot_location_map(plotmapfilename)
 
 
 
