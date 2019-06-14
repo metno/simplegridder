@@ -1444,6 +1444,11 @@ class ReadL2Data:
 
         # single outfile
         if 'outfile' in options:
+            global_attributes = {}
+            global_attributes['input files']=','.join(obj.files_read)
+            global_attributes['info']='file created by simplegridder '+obj.__version__+' (https://github.com/metno/simplegridder) at '+\
+                                      np.datetime64('now').astype('str')
+            global_attributes['quality']='quality flag of 0.7 applied'
             # if len(options['files']) == 1:
                 # write netcdf
             if os.path.exists(options['outfile']):
@@ -1464,8 +1469,9 @@ class ReadL2Data:
             result_flag = obj.to_grid(vars=vars_to_read)
             global_attributes = {}
             global_attributes['input files']=','.join(obj.files_read)
-            global_attributes['info']='file created by simplegridder '+obj.__version__+'(https://github.com/metno/simplegridder) at '+\
+            global_attributes['info']='file created by simplegridder '+obj.__version__+' (https://github.com/metno/simplegridder) at '+\
                                       np.datetime64('now').astype('str')
+            global_attributes['quality']='quality flag of 0.7 applied'
 
             obj.to_netcdf_simple(options['gridfile'],
                                  vars_to_read=vars_to_read,
