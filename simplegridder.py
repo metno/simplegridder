@@ -70,7 +70,7 @@ class ReadL2Data:
 
     """
     _FILEMASK = '*.nc'
-    __version__ = "0.1"
+    __version__ = "0.01"
     DATASET_NAME = 'L2'
     DATASET_PATH = ''
     # Flag if the dataset contains all years or not
@@ -1356,6 +1356,7 @@ class ReadL2Data:
         obj = simplegridder.ReadL2Data(verbose=True)
         non_archive_files = []
         temp_files_dir = {}
+        temp_file_flag = False
 
         if 'files' not in options:
             options['files'] = glob.glob(options['dir'] + '/**/' + options['filemask'], recursive=True)
@@ -1443,27 +1444,27 @@ class ReadL2Data:
 
         # single outfile
         if 'outfile' in options:
-            if len(options['files']) == 1:
+            # if len(options['files']) == 1:
                 # write netcdf
-                if os.path.exists(options['outfile']):
-                    if options['overwrite']:
-                        # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
-                        obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
-                    else:
-                        sys.stderr.write('Error: path {} exists'.format(options['outfile']))
-                else:
+            if os.path.exists(options['outfile']):
+                if options['overwrite']:
                     # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
                     obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
+                else:
+                    sys.stderr.write('Error: path {} exists'.format(options['outfile']))
             else:
-                sys.stderr.write("error: multiple input files, but only on output file given\n"
-                                 "Please use the --outdir option instead\n")
+                # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
+                obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
+            # else:
+            #     sys.stderr.write("error: multiple input files, but only on output file given\n"
+            #                      "Please use the --outdir option instead\n")
 
         # grid data
         if 'gridfile' in options:
             result_flag = obj.to_grid(vars=vars_to_read)
             global_attributes = {}
             global_attributes['input files']=','.join(obj.files_read)
-            global_attributes['info']='file created by simplegridder (https://github.com/metno/simplegridder) at '+\
+            global_attributes['info']='file created by simplegridder '+obj.__version__+'(https://github.com/metno/simplegridder) at '+\
                                       np.datetime64('now').astype('str')
 
             obj.to_netcdf_simple(options['gridfile'],
