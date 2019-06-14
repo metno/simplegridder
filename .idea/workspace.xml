@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="643" />
-    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1023" />
-    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1467" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="654" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1034" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1478" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecaedb05-d2df-4050-a097-5cec52118361" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ColocateNo2.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simplegridder.py" beforeDir="false" afterPath="$PROJECT_DIR$/simplegridder.py" afterDir="false" />
     </list>
@@ -19,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simplegridder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="1597" column="33" lean-forward="true" selection-start-line="1597" selection-start-column="33" selection-end-line="1597" selection-end-column="33" />
+            <state relative-caret-position="-1829">
+              <caret line="566" column="10" lean-forward="true" selection-start-line="566" selection-start-column="10" selection-end-line="566" selection-end-column="10" />
               <folding>
                 <element signature="e#1412#1421#0" expanded="true" />
                 <element signature="e#12#26#0" expanded="true" />
@@ -32,34 +31,6 @@
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../aeolus2netcdf/PlotHimalayaMap.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="35" selection-start-line="2" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ColocateNo2.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T231817_20181202T005947_05882_01_010202_20181208T011056.nc.map.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc.map.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -86,6 +57,7 @@
       <find>ec355aer</find>
       <find>'point'</find>
       <find>nitrogendioxide_tropospheric_column</find>
+      <find>ozone_tropospheric_column</find>
     </findStrings>
     <replaceStrings>
       <replace>s5p'</replace>
@@ -95,6 +67,8 @@
       <replace>point_dim_name</replace>
       <replace>time_dim_name</replace>
       <replace>nitrogendioxide_tropospheric_column_numobs</replace>
+      <replace>nitrogendioxide_tropospheric_column</replace>
+      <replace>ozone_total_vertical_column</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -104,8 +78,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../pyaerocom/pyaerocom/plot/plotmaps.py" />
-        <option value="$PROJECT_DIR$/simplegridder.py" />
         <option value="$PROJECT_DIR$/ColocateNo2.sh" />
+        <option value="$PROJECT_DIR$/simplegridder.py" />
       </list>
     </option>
   </component>
@@ -331,7 +305,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="17" width="1867" height="1062" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.60771704" visible="true" weight="0.2494577" />
       <window_info id="Structure" order="1" sideWeight="0.39228296" side_tool="true" visible="true" weight="0.2494577" />
@@ -361,27 +334,27 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1170</line>
+          <line>1181</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1608</line>
+          <line>1619</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1603</line>
+          <line>1614</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>947</line>
+          <line>958</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>924</line>
+          <line>935</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
@@ -442,6 +415,13 @@
     <entry file="file://$PROJECT_DIR$/nitrogendioxide_tropospheric_column_S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc.map.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/ColocateNo2.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../aeolus2netcdf/PlotHimalayaMap.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
@@ -451,21 +431,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simplegridder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="1597" column="33" lean-forward="true" selection-start-line="1597" selection-start-column="33" selection-end-line="1597" selection-end-column="33" />
+        <state relative-caret-position="-1829">
+          <caret line="566" column="10" lean-forward="true" selection-start-line="566" selection-start-column="10" selection-end-line="566" selection-end-column="10" />
           <folding>
             <element signature="e#1412#1421#0" expanded="true" />
             <element signature="e#12#26#0" expanded="true" />
             <element signature="e#12#26#0" expanded="true" />
             <element signature="e#12#43#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ColocateNo2.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>

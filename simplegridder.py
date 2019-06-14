@@ -106,7 +106,7 @@ class ReadL2Data:
     _LATBOUNDSSIZE = 4
     _LONBOUNDSNAME = 'lon_bnds'
     _LONBOUNDSSIZE = 4
-    _O3NAME = 'ozone'
+    _O3NAME = 'ozone_total_vertical_column'
 
     COORDINATE_NAMES = [_LATITUDENAME, _LONGITUDENAME, _ALTITUDENAME, _LATBOUNDSNAME, _LONBOUNDSNAME]
 
@@ -182,6 +182,7 @@ class ReadL2Data:
     INDEX_DICT.update({_ALTITUDENAME: _ALTITUDEINDEX})
     INDEX_DICT.update({_TIME_NAME: _TIMEINDEX})
     INDEX_DICT.update({_NO2NAME: _DATAINDEX01})
+    INDEX_DICT.update({_O3NAME: _DATAINDEX01})
     INDEX_DICT.update({_QANAME: _QAINDEX})
     INDEX_DICT.update({_LATBOUNDSNAME: _LATBOUNDINDEX})
     INDEX_DICT.update({_LONBOUNDSNAME: _LONBOUNDINDEX})
@@ -278,14 +279,23 @@ class ReadL2Data:
     NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['units'] = '1'
     NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['coordinates'] = 'longitude latitude'
 
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column'] = {}
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column']['long_name'] = \
-        'average tropospheric ozone column based on CCD algorithm'
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column'][
-        'standard_name'] = 'troposphere_mole_content_of_ozone'
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column']['units'] = 'mol m-2'
-    NETCDF_VAR_ATTRIBUTES['ozone_tropospheric_column']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean'] = {}
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['long_name'] = \
+        'total vertical ozone column'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean'][
+        'standard_name'] = 'atmosphere_mole_content_of_ozone'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['units'] = 'mol m-2'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['coordinates'] = 'longitude latitude'
+
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs'] = {}
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['long_name'] = \
+        'number of observations'
+    # NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs'][
+    #     'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['units'] = '1'
+    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['coordinates'] = 'longitude latitude'
 
     NETCDF_VAR_ATTRIBUTES['qa_index'] = {}
     NETCDF_VAR_ATTRIBUTES['qa_index']['_FillValue'] = np.nan
@@ -311,7 +321,8 @@ class ReadL2Data:
     CODA_READ_PARAMETERS['s5p']['metadata'][_LATBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/latitude_bounds'
     CODA_READ_PARAMETERS['s5p']['metadata'][_QANAME] = 'PRODUCT/qa_value'
     CODA_READ_PARAMETERS['s5p']['vars'][_NO2NAME] = 'PRODUCT/nitrogendioxide_tropospheric_column'
-    CODA_READ_PARAMETERS['s5p']['vars'][_O3NAME] = 'PRODUCT/ozone_tropospheric_vertical_column'
+    # CODA_READ_PARAMETERS['s5p']['vars'][_O3NAME] = 'PRODUCT/ozone_tropospheric_vertical_column'
+    CODA_READ_PARAMETERS['s5p']['vars'][_O3NAME] = 'PRODUCT/ozone_total_vertical_column'
 
     SUPPORTED_DATASETS = []
     SUPPORTED_DATASETS.append('s5p')
