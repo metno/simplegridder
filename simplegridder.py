@@ -99,51 +99,18 @@ class ReadL2Data:
     _EC355NAME = 'ec355aer'
     _BS355NAME = 'bs355aer'
     _TIME_NAME = 'time'
-    _NO2NAME = 'nitrogendioxide_tropospheric_column'
+    _TIME_OFFSET_NAME = 'delta_time'
+    _NO2NAME = 'sconcno2'
     _QANAME = 'qa_index'
 
     _LATBOUNDSNAME = 'lat_bnds'
     _LATBOUNDSSIZE = 4
     _LONBOUNDSNAME = 'lon_bnds'
     _LONBOUNDSSIZE = 4
-    _O3NAME = 'ozone_total_vertical_column'
+    _O3NAME = 'vmro3'
 
     COORDINATE_NAMES = [_LATITUDENAME, _LONGITUDENAME, _ALTITUDENAME, _LATBOUNDSNAME, _LONBOUNDSNAME]
 
-    #     Example
-    #     7.2.Cells in a
-    #     non - rectangular
-    #     grid
-    #
-    #
-    # dimensions:
-    # imax = 128;
-    # jmax = 64;
-    # nv = 4;
-    # variables:
-    # float
-    # lat(jmax, imax);
-    # lat: long_name = "latitude";
-    # lat: units = "degrees_north";
-    # lat: bounds = "lat_bnds";
-    # float
-    # lon(jmax, imax);
-    # lon: long_name = "longitude";
-    # lon: units = "degrees_east";
-    # lon: bounds = "lon_bnds";
-    # float
-    # lat_bnds(jmax, imax, nv);
-    # float
-    # lon_bnds(jmax, imax, nv);
-    #
-    # The
-    # boundary
-    # variables
-    # lat_bnds and lon_bnds
-    # associate
-    # a
-    # gridpoint(j, i)
-    # with the cell determined by the vertices (lat_bnds(j, i, n), lon_bnds(j, i, n)), n=0, .., 3.The gridpoint location, (lat(j, i), lon(j, i)), should be contained within this region.
 
     # variable names for the different retrievals
 
@@ -163,10 +130,11 @@ class ReadL2Data:
     _DATAINDEX03 = 9
     _DATAINDEX04 = 10
     _QAINDEX = 11
-    _LATBOUNDINDEX = 12
+    _TIME_OFFSET_INDEX = 12
+    _LATBOUNDINDEX = 13
     _LONBOUNDINDEX = _LATBOUNDINDEX + _LATBOUNDSSIZE + 1
 
-    _COLNO = 12 + _LATBOUNDSSIZE + _LONBOUNDSSIZE + 2
+    _COLNO = _LATBOUNDINDEX + _LATBOUNDSSIZE + _LONBOUNDSSIZE + 2
 
     _ROWNO = 1000000
     _CHUNKSIZE = 100000
@@ -181,6 +149,7 @@ class ReadL2Data:
     INDEX_DICT.update({_LONGITUDENAME: _LONINDEX})
     INDEX_DICT.update({_ALTITUDENAME: _ALTITUDEINDEX})
     INDEX_DICT.update({_TIME_NAME: _TIMEINDEX})
+    INDEX_DICT.update({_TIME_OFFSET_NAME: _TIME_OFFSET_INDEX})
     INDEX_DICT.update({_NO2NAME: _DATAINDEX01})
     INDEX_DICT.update({_O3NAME: _DATAINDEX01})
     INDEX_DICT.update({_QANAME: _QAINDEX})
@@ -258,52 +227,52 @@ class ReadL2Data:
         'standard_name'] = 'volume_extinction_coefficient_in_air_due_to_ambient_aerosol_particles'
     NETCDF_VAR_ATTRIBUTES['ec355aer']['units'] = '1/Mm'
 
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column'] = {}
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['long_name'] = \
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME] = {}
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME]['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME]['long_name'] = \
         'Tropospheric vertical column of nitrogen dioxide'
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column'][
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME][
         'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['units'] = 'mol m-2'
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME]['units'] = 'mol m-2'
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME]['coordinates'] = 'longitude latitude'
 
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_mean'] = \
-        NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column']
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_mean'] = \
+        NETCDF_VAR_ATTRIBUTES[_NO2NAME]
 
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs'] = {}
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['long_name'] = \
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs'] = {}
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs']['long_name'] = \
         'number of observations'
-    # NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs'][
+    # NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs'][
     #     'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['units'] = '1'
-    NETCDF_VAR_ATTRIBUTES['nitrogendioxide_tropospheric_column_numobs']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs']['units'] = '1'
+    NETCDF_VAR_ATTRIBUTES[_NO2NAME+'_numobs']['coordinates'] = 'longitude latitude'
 
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean'] = {}
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['long_name'] = \
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean'] = {}
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean']['long_name'] = \
         'total vertical ozone column'
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean'][
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean'][
         'standard_name'] = 'atmosphere_mole_content_of_ozone'
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['units'] = 'mol m-2'
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_mean']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean']['units'] = 'mol m-2'
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_mean']['coordinates'] = 'longitude latitude'
 
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs'] = {}
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['long_name'] = \
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs'] = {}
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs']['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs']['long_name'] = \
         'number of observations'
-    # NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs'][
+    # NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs'][
     #     'standard_name'] = 'troposphere_mole_content_of_nitrogen_dioxide'
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['units'] = '1'
-    NETCDF_VAR_ATTRIBUTES['ozone_total_vertical_column_numobs']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs']['units'] = '1'
+    NETCDF_VAR_ATTRIBUTES[_O3NAME+'_numobs']['coordinates'] = 'longitude latitude'
 
-    NETCDF_VAR_ATTRIBUTES['qa_index'] = {}
-    NETCDF_VAR_ATTRIBUTES['qa_index']['_FillValue'] = np.nan
-    NETCDF_VAR_ATTRIBUTES['qa_index']['long_name'] = 'data quality value'
-    NETCDF_VAR_ATTRIBUTES['qa_index']['comment'] = \
+    NETCDF_VAR_ATTRIBUTES[_QANAME] = {}
+    NETCDF_VAR_ATTRIBUTES[_QANAME]['_FillValue'] = np.nan
+    NETCDF_VAR_ATTRIBUTES[_QANAME]['long_name'] = 'data quality value'
+    NETCDF_VAR_ATTRIBUTES[_QANAME]['comment'] = \
         'A continuous quality descriptor, varying between 0(no data) and 1 (full quality data). Recommend to ignore data with qa_value < 0.5'
-    NETCDF_VAR_ATTRIBUTES['qa_index']['units'] = '1'
-    NETCDF_VAR_ATTRIBUTES['qa_index']['coordinates'] = 'longitude latitude'
+    NETCDF_VAR_ATTRIBUTES[_QANAME]['units'] = '1'
+    NETCDF_VAR_ATTRIBUTES[_QANAME]['coordinates'] = 'longitude latitude'
 
     TEX_UNITS = {}
     TEX_UNITS['ec355aer'] = r'$10^{-6} \cdot m^{-1}$'
@@ -311,18 +280,37 @@ class ReadL2Data:
 
     CODA_READ_PARAMETERS = {}
     CODA_READ_PARAMETERS['s5p'] = {}
-    CODA_READ_PARAMETERS['s5p']['metadata'] = {}
-    CODA_READ_PARAMETERS['s5p']['vars'] = {}
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME] = {}
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'] = {}
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['vars'] = {}
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['time_offset'] = np.float_(24.*60.*60.)
+    CODA_READ_PARAMETERS['s5p'][_O3NAME] = {}
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'] = {}
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['vars'] = {}
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['time_offset'] = np.float_(24.*60.*60.)
 
-    CODA_READ_PARAMETERS['s5p']['metadata'][_TIME_NAME] = 'PRODUCT/time_utc'
-    CODA_READ_PARAMETERS['s5p']['metadata'][_LATITUDENAME] = 'PRODUCT/latitude'
-    CODA_READ_PARAMETERS['s5p']['metadata'][_LONGITUDENAME] = 'PRODUCT/longitude'
-    CODA_READ_PARAMETERS['s5p']['metadata'][_LONBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/longitude_bounds'
-    CODA_READ_PARAMETERS['s5p']['metadata'][_LATBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/latitude_bounds'
-    CODA_READ_PARAMETERS['s5p']['metadata'][_QANAME] = 'PRODUCT/qa_value'
-    CODA_READ_PARAMETERS['s5p']['vars'][_NO2NAME] = 'PRODUCT/nitrogendioxide_tropospheric_column'
+    # CODA_READ_PARAMETERS['s5p']['metadata'][_TIME_NAME] = 'PRODUCT/time_utc'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_TIME_NAME] = 'PRODUCT/time'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_TIME_OFFSET_NAME] = 'PRODUCT/delta_time'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_LATITUDENAME] = 'PRODUCT/latitude'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_LONGITUDENAME] = 'PRODUCT/longitude'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_LONBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/longitude_bounds'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_LATBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/latitude_bounds'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['metadata'][_QANAME] = 'PRODUCT/qa_value'
+    CODA_READ_PARAMETERS['s5p'][_NO2NAME]['vars'][_NO2NAME] = 'PRODUCT/nitrogendioxide_tropospheric_column'
+
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_TIME_NAME] = 'PRODUCT/time'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_TIME_OFFSET_NAME] = 'PRODUCT/delta_time'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_LATITUDENAME] = 'PRODUCT/latitude'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_LONGITUDENAME] = 'PRODUCT/longitude'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_LONBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/longitude_bounds'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_LATBOUNDSNAME] = 'PRODUCT/SUPPORT_DATA/GEOLOCATIONS/latitude_bounds'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['metadata'][_QANAME] = 'PRODUCT/qa_value'
+    CODA_READ_PARAMETERS['s5p'][_O3NAME]['vars'][_O3NAME] = 'PRODUCT/ozone_total_vertical_column'
+
+
+
     # CODA_READ_PARAMETERS['s5p']['vars'][_O3NAME] = 'PRODUCT/ozone_tropospheric_vertical_column'
-    CODA_READ_PARAMETERS['s5p']['vars'][_O3NAME] = 'PRODUCT/ozone_total_vertical_column'
 
     SUPPORTED_DATASETS = []
     SUPPORTED_DATASETS.append('s5p')
@@ -405,7 +393,7 @@ class ReadL2Data:
             # self.logger.warning(temp)
 
     ###################################################################################
-    def read_file(self, filename, vars_to_read=None, read_dataset='s5p', return_as='dict',
+    def read_file(self, filename, vars_to_read='sconcno2', read_dataset='s5p', return_as='dict',
                   loglevel=None, apply_quality_flag=True):
         """method to read the file partially
 
@@ -466,15 +454,6 @@ class ReadL2Data:
         import time
         import coda
 
-        # coda uses 2000-01-01T00:00:00 as epoch unfortunately.
-        # so calculate the difference in seconds to the Unix epoch
-        seconds_to_add = np.datetime64('2000-01-01T00:00:00') - np.datetime64('1970-01-01T00:00:00')
-        seconds_to_add = seconds_to_add.astype(np.float_)
-
-        # the same can be achieved using pandas, but we stick to numpy here
-        # base_time = pd.DatetimeIndex(['2000-01-01'])
-        # seconds_to_add = (base_time.view('int64') // pd.Timedelta(1, unit='s'))[0]
-
         start = time.perf_counter()
         file_data = {}
 
@@ -490,20 +469,30 @@ class ReadL2Data:
 
             vars_to_read_in = None
             vars_to_read_in = vars_to_read.copy()
-            if vars_to_read is None:
-                # read all variables
-                vars_to_read_in = list(self.CODA_READ_PARAMETERS[retrieval]['vars'].keys())
-            vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[retrieval]['metadata'].keys()))
-            # get rid of duplicates
-            vars_to_read_in = list(set(vars_to_read_in))
-
-            # read data time
-            # do that differently since its only stored once per profile
-            coda_groups_to_read = (
-                self.CODA_READ_PARAMETERS[retrieval]['metadata'][self._TIME_NAME].split(self.GROUP_DELIMITER))
 
             # this works only for aeolus
             if read_dataset == 'aeolus':
+                # coda for aeolus uses 2000-01-01T00:00:00 as epoch unfortunately.
+                # so calculate the difference in seconds to the Unix epoch
+                seconds_to_add = np.datetime64('2000-01-01T00:00:00') - np.datetime64('1970-01-01T00:00:00')
+                seconds_to_add = seconds_to_add.astype(np.float_)
+
+                # the same can be achieved using pandas, but we stick to numpy here
+                # base_time = pd.DatetimeIndex(['2000-01-01'])
+                # seconds_to_add = (base_time.view('int64') // pd.Timedelta(1, unit='s'))[0]
+
+                if vars_to_read is None:
+                    # read all variables
+                    vars_to_read_in = list(self.CODA_READ_PARAMETERS[retrieval]['vars'].keys())
+                vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[retrieval]['metadata'].keys()))
+                # get rid of duplicates
+                vars_to_read_in = list(set(vars_to_read_in))
+
+                # read data time
+                # do that differently since its only stored once per profile
+                coda_groups_to_read = (
+                    self.CODA_READ_PARAMETERS[retrieval]['metadata'][self._TIME_NAME].split(self.GROUP_DELIMITER))
+
                 # this is for ESA Aeolus DBL files
                 file_data[self._TIME_NAME] = coda.fetch(product,
                                                         coda_groups_to_read[0],
@@ -549,30 +538,68 @@ class ReadL2Data:
                                                              groups[0])
 
             elif read_dataset == 's5p':
-                # This is for Sentinel 5p TEMIS netcdf files
+                # This is for Sentinel 5p netcdf files read via coda to avoid dealing with all the groups in there
+                # coda for S5P uses 2010-01-01T00:00:00 as epoch unfortunately.
+                # so calculate the difference in seconds to the Unix epoch
+                seconds_to_add = np.datetime64('2010-01-01T00:00:00') - np.datetime64('1970-01-01T00:00:00')
+                seconds_to_add = seconds_to_add.astype(np.float_)
 
-                # in this case the time comes as a string!
+                # the same can be achieved using pandas, but we stick to numpy here
+                # base_time = pd.DatetimeIndex(['2000-01-01'])
+                # seconds_to_add = (base_time.view('int64') // pd.Timedelta(1, unit='s'))[0]
+
+                if vars_to_read is None:
+                    # read all variables
+                    vars_to_read_in = list(self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['vars'].keys())
+                vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['metadata'].keys()))
+                # get rid of duplicates
+                vars_to_read_in = list(set(vars_to_read_in))
+
+                # read data time
+                # it consists of the base time of the orbit and an offset per scanline
+
+                coda_groups_to_read = (
+                    self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['metadata'][self._TIME_NAME].split(self.GROUP_DELIMITER))
+
+                # seconds since 1 Jan 2010
                 time_data_temp = coda.fetch(product,
                                             coda_groups_to_read[0],
                                             coda_groups_to_read[1])
+                file_data[self._TIME_NAME] = \
+                    ((time_data_temp + seconds_to_add) * 1.E3).astype(np.int).astype('datetime64[ms]')
+
+                # read the offset per scanline
+                coda_groups_to_read = (
+                    self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['metadata'][self._TIME_OFFSET_NAME].split(self.GROUP_DELIMITER))
+
+                # the result in in milli seconds an can therefore just added to the base time
+                time_data_temp = coda.fetch(product,
+                                            coda_groups_to_read[0],
+                                            coda_groups_to_read[1])
+                file_data[self._TIME_OFFSET_NAME] = \
+                    file_data[self._TIME_NAME] + np.squeeze(time_data_temp)
+
                 # time_data_temp comes as shape[1,<time step number] and looks like this
                 # 2018-12-01T01:40:26.055000Z
                 # since np.datetime64 will remove the understanding of the last Z, we remove that
                 # also in the list comprehension doing the conversion to np.datetime64
 
-                file_data[self._TIME_NAME] = \
-                    np.array([np.datetime64(time_data_temp[0, x][:-1]) for x in range(len(time_data_temp[0]))])
+                # file_data[self._TIME_NAME] = \
+                #     np.array([np.datetime64(time_data_temp[0, x][:-1]) for x in range(len(time_data_temp[0]))])
 
                 # read data in a simple dictionary
                 for var in vars_to_read_in:
                     # time has been read already
-                    if var == self._TIME_NAME:
+                    if var == self._TIME_NAME or var == self._TIME_OFFSET_NAME:
                         continue
                     self.logger.info('reading var: {}'.format(var))
+
                     try:
-                        groups = self.CODA_READ_PARAMETERS[retrieval]['vars'][var].split(self.GROUP_DELIMITER)
+                        groups = \
+                            self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['metadata'][var].split(self.GROUP_DELIMITER)
                     except KeyError:
-                        groups = self.CODA_READ_PARAMETERS[retrieval]['metadata'][var].split(self.GROUP_DELIMITER)
+                        groups = \
+                            self.CODA_READ_PARAMETERS[retrieval][vars_to_read[0]]['vars'][var].split(self.GROUP_DELIMITER)
 
                     # the data comes as record and not as array as at aeolus
                     file_data[var] = {}
@@ -644,7 +671,8 @@ class ReadL2Data:
                 elif read_dataset == 's5p':
                     # as this point file_data['time'] has ns time resolution
                     # degrade that to the pyaerocom internal ms
-                    for idx, _time in enumerate(file_data['time'].astype('datetime64[ms]').astype(np.float_) / 1000.):
+                    for idx, _time in enumerate(file_data[self._TIME_OFFSET_NAME]):
+                    # for idx, _time in enumerate(file_data[self._TIME_OFFSET_NAME].astype('datetime64[ms]').astype(np.float_) / 1000.):
                         # file_data['time'].astype(np.float_) is milliseconds after the (Unix) epoch
                         # but we want to save the time as seconds since the epoch
 
@@ -658,11 +686,16 @@ class ReadL2Data:
                                 #     print(file_data[self._QANAME][idx,_index])
                                 continue
 
-                            data[index_pointer, self._TIMEINDEX] = _time
+                            # data[index_pointer, self._TIMEINDEX] = _time + file_data['time'][0].astype(np.float_)
+                            try:
+                                data[index_pointer, self._TIMEINDEX] = _time.astype(np.float_)
+                            except:
+                                data[index_pointer, self._TIMEINDEX] = _time[_index].astype(np.float_)
+
                             # loop over the variables
                             for var in vars_to_read_in:
                                 # time is the index, so skip it here
-                                if var == self._TIME_NAME:
+                                if var == self._TIME_NAME or var == self._TIME_OFFSET_NAME:
                                     continue
                                 # the bounds need to be treated special
                                 elif var in self.SIZE_DICT:
@@ -673,6 +706,7 @@ class ReadL2Data:
                                         file_data[var][idx, _index]
 
                                 else:
+                                    # print('var {}, idx {}, _index {}'.format(var, idx,_index))
                                     data[index_pointer, self.INDEX_DICT[var]] = file_data[var][idx, _index]
 
                             index_pointer += 1
@@ -867,15 +901,15 @@ class ReadL2Data:
                 _data = self.data
             else:
                 _data = data_to_write
-    
+
             vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[self.DATASET_READ]['metadata'].keys()))
-    
+
             datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
             # pointnumber = np.arange(0, len(datetimedata))
             bounds_dim_name = 'bounds'
             point_dim_name = 'point'
             ds = xr.Dataset()
-    
+
             # time is a special variable that needs special treatment
             ds['time'] = (point_dim_name), datetimedata
             for var in vars_to_read_in:
@@ -888,19 +922,19 @@ class ReadL2Data:
                     # 2D data: here: bounds
                     ds[var] = ((point_dim_name, bounds_dim_name),
                                _data[:, self.INDEX_DICT[var]:self.INDEX_DICT[var] + self.SIZE_DICT[var]])
-    
+
                 # remove _FillVar attribute for coordinate variables as CF requires it
                 if var in self.COORDINATE_NAMES:
                     ds[var].encoding['_FillValue'] = None
-    
+
                 # add predifined attributes
                 try:
                     for attrib in self.NETCDF_VAR_ATTRIBUTES[var]:
                         ds[var].attrs[attrib] = self.NETCDF_VAR_ATTRIBUTES[var][attrib]
-    
+
                 except KeyError:
                     pass
-    
+
         else:
             # write gridded data to netcdf
             if data_to_write is None:
@@ -1021,7 +1055,7 @@ class ReadL2Data:
                     data_for_gridding[var] = grid_data_prot.copy()
                     gridded_var_data['latitude']=grid_lats
                     gridded_var_data['longitude']=grid_lons
-                    gridded_var_data['time']=np.mean(_data[:,self._TIMEINDEX]).astype('datetime64[s]')
+                    gridded_var_data['time']=np.mean(_data[:,self._TIMEINDEX]).astype('datetime64[ms]')
 
                     gridded_var_data[var] = {}
                     gridded_var_data[var]['mean'] = grid_array_prot.copy()
@@ -1088,6 +1122,27 @@ class ReadL2Data:
         >>> m.fillcontinents(color='#cc9966',lake_color='#99ffff')
         >>> m.scatter(x,y,3,marker='o',color='k')
         >>> plt.show()
+
+
+
+        >>> infile='/lustre/storeB/project/fou/kl/vals5p/aerocom/Sentinel5P/renamed/aerocom.Sentinel5P.daily.sconcno2.2018.nc'
+        >>> import xarray as xr
+        >>> import cartopy.crs as ccrs
+        >>> import matplotlib.pyplot as plt
+        >>> import numpy as np
+        >>> ds=xr.open_dataset(infile)
+        >>> ds['sconcno2'].data[ds['sconcno2'] < 0.]=np.nan
+        >>> mean_data = ds['sconcno2'].mean(axis=0)
+
+        >>> from matplotlib.colors import LogNorm
+
+        >>> fig = plt.figure(figsize=(10, 6))
+        >>> ax = fig.add_subplot(111, projection=ccrs.Robinson(), aspect='auto')
+        >>> plot=mean_data.plot.pcolormesh(ax=ax, cmap='jet', transform=ccrs.PlateCarree(), robust=True, levels=16)
+        >>> ax.coastlines()
+        >>> ax.set_global()
+
+
         """
 
         import matplotlib.pyplot as plt
