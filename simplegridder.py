@@ -902,7 +902,8 @@ class ReadL2Data:
             else:
                 _data = data_to_write
 
-            vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[self.DATASET_READ]['metadata'].keys()))
+            for var in vars_to_read:
+                vars_to_read_in.extend(list(self.CODA_READ_PARAMETERS[self.DATASET_READ][var]['metadata'].keys()))
 
             datetimedata = pd.to_datetime(_data[:, self._TIMEINDEX].astype('datetime64[s]'))
             # pointnumber = np.arange(0, len(datetimedata))
@@ -1541,12 +1542,14 @@ class ReadL2Data:
             if os.path.exists(options['outfile']):
                 if options['overwrite']:
                     # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
-                    obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
+                    obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read,
+                                         global_attributes=global_attributes)
                 else:
                     sys.stderr.write('Error: path {} exists'.format(options['outfile']))
             else:
                 # obj.to_netcdf_simple(options['outfile'], global_attributes=ancilliary_data['mph'])
-                obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read)
+                obj.to_netcdf_simple(options['outfile'], vars_to_read=vars_to_read,
+                                     global_attributes=global_attributes)
             # else:
             #     sys.stderr.write("error: multiple input files, but only on output file given\n"
             #                      "Please use the --outdir option instead\n")
