@@ -1131,7 +1131,7 @@ class ReadL2Data:
     ###################################################################################
 
     def plot_map(self, plotfilename, bbox=None, himalaya_flag=None, title=None,
-                 vars=['nitrogendioxide_tropospheric_column']):
+                 vars=['tcolno2']):
         """small routine to plot self.gridded_data
 
         >>> import matplotlib.pyplot as plt
