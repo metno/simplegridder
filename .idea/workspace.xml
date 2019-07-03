@@ -7,7 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="905" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecaedb05-d2df-4050-a097-5cec52118361" name="Default Changelist" comment="">
+    <list default="true" id="ecaedb05-d2df-4050-a097-5cec52118361" name="Default Changelist" comment="error correction with variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simplegridder.py" beforeDir="false" afterPath="$PROJECT_DIR$/simplegridder.py" afterDir="false" />
     </list>
@@ -22,13 +22,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simplegridder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="1551" column="72" selection-start-line="1551" selection-start-column="72" selection-end-line="1551" selection-end-column="72" />
+            <state relative-caret-position="292">
+              <caret line="1560" column="37" selection-start-line="1560" selection-start-column="37" selection-end-line="1560" selection-end-column="37" />
               <folding>
                 <element signature="e#1412#1421#0" expanded="true" />
-                <element signature="e#12#26#0" expanded="true" />
-                <element signature="e#12#26#0" expanded="true" />
-                <element signature="e#12#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,7 +167,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.single file export">
+  <component name="RunManager" selected="Python.single file export gridded">
     <configuration name="single file export gridded tar file" type="PythonConfigurationType" factoryName="Python">
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,9 +193,6 @@
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -217,6 +211,9 @@
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -346,14 +343,22 @@
       <option name="project" value="LOCAL" />
       <updated>1560500166800</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="error correction with variable name">
+      <created>1562156269073</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562156269073</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="17" width="1867" height="1062" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5932476" visible="true" weight="0.2494577" />
-      <window_info id="Structure" order="1" sideWeight="0.4067524" side_tool="true" visible="true" weight="0.2494577" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5916399" visible="true" weight="0.2494577" />
+      <window_info id="Structure" order="1" sideWeight="0.40836012" side_tool="true" visible="true" weight="0.2494577" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -363,9 +368,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" x="989" y="73" width="931" height="1001" id="Terminal" order="8" sideWeight="0.49945354" weight="0.32756758" />
+      <window_info active="true" anchor="bottom" x="989" y="73" width="931" height="1001" id="Terminal" order="8" sideWeight="0.49945354" visible="true" weight="0.32756758" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50054646" side_tool="true" weight="0.32824427" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" visible="true" weight="0.32756758" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" weight="0.32756758" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -373,7 +378,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="write point cloud file also for more that one input file" />
-    <option name="LAST_COMMIT_MESSAGE" value="write point cloud file also for more that one input file" />
+    <MESSAGE value="error correction with variable name" />
+    <option name="LAST_COMMIT_MESSAGE" value="error correction with variable name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -385,18 +391,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1698</line>
+          <line>1699</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1693</line>
+          <line>1694</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
           <line>905</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/simplegridder.py</url>
+          <line>1234</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -455,13 +466,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simplegridder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="1551" column="72" selection-start-line="1551" selection-start-column="72" selection-end-line="1551" selection-end-column="72" />
+        <state relative-caret-position="292">
+          <caret line="1560" column="37" selection-start-line="1560" selection-start-column="37" selection-end-line="1560" selection-end-column="37" />
           <folding>
             <element signature="e#1412#1421#0" expanded="true" />
-            <element signature="e#12#26#0" expanded="true" />
-            <element signature="e#12#26#0" expanded="true" />
-            <element signature="e#12#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

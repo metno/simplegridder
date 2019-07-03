@@ -1558,10 +1558,11 @@ class ReadL2Data:
         if 'gridfile' in options:
             result_flag = obj.to_grid(vars=vars_to_read)
             global_attributes = {}
-            global_attributes['input files']=','.join(obj.files_read)
+            global_attributes['input_files']=','.join(obj.files_read)
             global_attributes['info']='file created by simplegridder '+obj.__version__+' (https://github.com/metno/simplegridder) at '+\
                                       np.datetime64('now').astype('str')
             global_attributes['quality']='quality flag of 0.7 applied'
+            global_attributes['value_info']='negative values removed before gridding'
 
             obj.to_netcdf_simple(options['gridfile'],
                                  vars_to_read=vars_to_read,
