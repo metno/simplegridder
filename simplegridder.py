@@ -100,7 +100,7 @@ class ReadL2Data:
     _BS355NAME = 'bs355aer'
     _TIME_NAME = 'time'
     _TIME_OFFSET_NAME = 'delta_time'
-    _NO2NAME = 'sconcno2'
+    _NO2NAME = 'tcolno2'
     _QANAME = 'qa_index'
 
     _LATBOUNDSNAME = 'lat_bnds'
@@ -1005,7 +1005,7 @@ class ReadL2Data:
         self.logger.info(temp)
 
     ###################################################################################
-    def to_grid(self, _data=None, vars=None, gridtype='1x1', engine='python'):
+    def to_grid(self, _data=None, vars=None, gridtype='1x1', engine='python', remove_negative_values=True):
         """simple gridding algorithm that only takes the pixel middle points into account
 
         All the data points in self.data or _data are considered!
@@ -1041,7 +1041,7 @@ class ReadL2Data:
                 for grid_lat in grid_lats:
                     grid_data_prot[grid_lat] = {}
                     for grid_lon in grid_lons:
-                        grid_data_prot[grid_lat] = {}
+                        grid_data_prot[grid_lat][grid_lon] = {}
 
                 end_time = time.perf_counter()
                 elapsed_sec = end_time - start_time
@@ -1077,14 +1077,35 @@ class ReadL2Data:
                             continue
 
                         for var in vars:
+
                             data_for_gridding[var][grid_lat][grid_lon] = \
-                                np.array(_data[lat_match_indexes[lon_match_indexes],self.INDEX_DICT[var]])
-                            gridded_var_data[var]['mean'][lat_idx,lon_idx] = \
-                                np.nanmean(_data[lat_match_indexes[lon_match_indexes],self.INDEX_DICT[var]])
-                            gridded_var_data[var]['stddev'][lat_idx,lon_idx] = \
-                                np.nanstd(_data[lat_match_indexes[lon_match_indexes],self.INDEX_DICT[var]])
-                            gridded_var_data[var]['numobs'][lat_idx,lon_idx] = \
-                                _data[lat_match_indexes[lon_match_indexes],self.INDEX_DICT[var]].size
+                                np.array(_data[lat_match_indexes[lon_match_indexes], self.INDEX_DICT[var]])
+
+                            if remove_negative_values:
+                                if lon_match_indexes.size == 1:
+                                    if data_for_gridding[var][grid_lat][grid_lon] < 0:
+                                        data_for_gridding[var][grid_lat][grid_lon] = {}
+                                        continue
+                                else:
+                                    # remove the negative values from the dataset
+                                    pos_indexes = np.where(data_for_gridding[var][grid_lat][grid_lon] >= 0.)
+                                    data_for_gridding[var][grid_lat][grid_lon] = \
+                                        data_for_gridding[var][grid_lat][grid_lon][pos_indexes]
+                                    # try:
+                                    #     data_for_gridding[var][grid_lat][grid_lon] = \
+                                    #         data_for_gridding[var][grid_lat][grid_lon][pos_indexes]
+                                    # except IndexError:
+                                    #     # data_for_gridding[var][grid_lat][grid_lon] is a scalar
+                                    #     if data_for_gridding[var][grid_lat][grid_lon] < 0.:
+                                    #       data_for_gridding[var][grid_lat][grid_lon] = []
+
+                            if data_for_gridding[var][grid_lat][grid_lon].size > 0:
+                                gridded_var_data[var]['mean'][lat_idx, lon_idx] = \
+                                    np.nanmean(_data[lat_match_indexes[lon_match_indexes], self.INDEX_DICT[var]])
+                                gridded_var_data[var]['stddev'][lat_idx, lon_idx] = \
+                                    np.nanstd(_data[lat_match_indexes[lon_match_indexes], self.INDEX_DICT[var]])
+                                gridded_var_data[var]['numobs'][lat_idx, lon_idx] = \
+                                    _data[lat_match_indexes[lon_match_indexes], self.INDEX_DICT[var]].size
 
 
 

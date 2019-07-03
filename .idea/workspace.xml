@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1533" />
+    <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1554" />
     <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="672" />
     <bookmark url="file://$PROJECT_DIR$/simplegridder.py" line="1052" />
   </component>
@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simplegridder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+            <state relative-caret-position="-6156">
+              <caret line="102" column="20" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
               <folding>
                 <element signature="e#1412#1421#0" expanded="true" />
                 <element signature="e#12#26#0" expanded="true" />
@@ -36,6 +36,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.png">
           <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../pyaerocom/pyaerocom/io/readungriddedbase.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-108" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../pyaerocom/pyaerocom/io/read_aeronet_sunv3.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -101,7 +113,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,12 +146,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../aeolus2netcdf/PlotHimalayaMap.sh" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pyaerocom/pyaerocom/io/read_aeronet_sunv3.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -159,21 +171,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.single file export gridded">
+  <component name="RunManager" selected="Python.single file export gridded tar file">
     <configuration name="single file export gridded tar file" type="PythonConfigurationType" factoryName="Python">
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="-O --gridfile ./gridded.nc --variables nitrogendioxide_tropospheric_column --file $USER_HOME$/tmp/tropomi_no2_20181201.tar" />
+      <option name="PARAMETERS" value="-O --gridfile ./gridded.nc --variables tcolno2 --file $USER_HOME$/tmp/tropomi_no2_20181201.tar" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -191,7 +200,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="-O --gridfile ./gridded.nc --variables sconcno2 --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="PARAMETERS" value="-O --gridfile ./gridded.nc --variables tcolno2 --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -212,7 +221,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="-O -o test.nc --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="PARAMETERS" value="-O -o test.nc --variables tcolno2 --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -224,6 +233,9 @@
       <module name="simplegridder" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda.2018/envs/sentinel5p/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -251,7 +263,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="-O --plotmap --variables nitrogendioxide_tropospheric_column --file $USER_HOME$/tmp/tropomi_no2_20181201.tar" />
+      <option name="PARAMETERS" value="-O --plotmap --variables tcolno2 --file $USER_HOME$/tmp/tropomi_no2_20181201.tar" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -272,7 +284,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="-O --plotmap --variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="PARAMETERS" value="-O --plotmap --variables tcolno2 --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -293,7 +305,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simplegridder.py" />
-      <option name="PARAMETERS" value="--variables nitrogendioxide_tropospheric_column --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
+      <option name="PARAMETERS" value="--variables tcolno2 --file /lustre/storeB/project/fou/kl/vals5p/tmp/S5P_OFFL_L2__NO2____20181201T011851_20181201T030021_05869_01_010202_20181207T030115.nc" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -302,12 +314,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.single file export gridded" />
-      <item itemvalue="Python.single file ozone export gridded " />
       <item itemvalue="Python.single file export gridded tar file" />
+      <item itemvalue="Python.single file export gridded" />
+      <item itemvalue="Python.single file export" />
+      <item itemvalue="Python.single file ozone export gridded " />
       <item itemvalue="Python.single file plot gridded " />
       <item itemvalue="Python.single file plot gridded tar file" />
-      <item itemvalue="Python.single file export" />
       <item itemvalue="Python.single file" />
     </list>
   </component>
@@ -338,8 +350,8 @@
   <component name="ToolWindowManager">
     <frame x="53" y="17" width="1867" height="1062" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6012862" visible="true" weight="0.2494577" />
-      <window_info id="Structure" order="1" sideWeight="0.39871383" side_tool="true" visible="true" weight="0.2494577" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5948553" visible="true" weight="0.2494577" />
+      <window_info id="Structure" order="1" sideWeight="0.4051447" side_tool="true" visible="true" weight="0.2494577" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -366,17 +378,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1236</line>
+          <line>1257</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1674</line>
+          <line>1695</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simplegridder.py</url>
-          <line>1669</line>
+          <line>1690</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
@@ -434,26 +446,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pyaerocom/pyaerocom/io/read_aeronet_sunv3.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5544">
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../pyaerocom/pyaerocom/io/readungriddedbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/simplegridder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="103" column="24" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+        <state relative-caret-position="-6156">
+          <caret line="102" column="20" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
           <folding>
             <element signature="e#1412#1421#0" expanded="true" />
             <element signature="e#12#26#0" expanded="true" />
             <element signature="e#12#26#0" expanded="true" />
             <element signature="e#12#43#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda.2018/envs/sentinel5p/lib/python3.7/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5544">
-          <caret line="309" selection-start-line="309" selection-end-line="309" />
         </state>
       </provider>
     </entry>
